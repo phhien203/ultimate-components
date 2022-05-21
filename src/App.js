@@ -1,10 +1,10 @@
 import "./App.css";
-import Stopwatch from "./Stopwatch";
+import Form from "./Form";
 
 function App() {
   return (
     <main>
-      <Stopwatch />
+      <Form />
     </main>
   );
 }
