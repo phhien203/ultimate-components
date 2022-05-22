@@ -7,13 +7,16 @@ const Form = () => {
     lastName: "",
     biography: "",
     transport: "",
+    agree: false,
   };
   const [formState, setFormState] = useState(initialState);
 
   const updateFormState = (e) => {
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setFormState({
       ...formState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   };
 
@@ -64,6 +67,15 @@ const Form = () => {
         <option value="boats">Boats</option>
         <option value="cars">Cars</option>
       </select>
+
+      <label htmlFor="agree">I agree TOC</label>
+      <input
+        type="checkbox"
+        id="agree"
+        name="agree"
+        onChange={updateFormState}
+        checked={formState.agree}
+      />
 
       <button type="submit">Save</button>
       <button type="button" onClick={resetFormState}>
