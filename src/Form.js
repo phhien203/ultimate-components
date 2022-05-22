@@ -8,6 +8,9 @@ const Form = () => {
     biography: "",
     transport: "",
     agree: false,
+    breakfast: false,
+    lunch: false,
+    dinner: false,
   };
   const [formState, setFormState] = useState(initialState);
 
@@ -68,14 +71,47 @@ const Form = () => {
         <option value="cars">Cars</option>
       </select>
 
-      <label htmlFor="agree">I agree TOC</label>
-      <input
-        type="checkbox"
-        id="agree"
-        name="agree"
-        onChange={updateFormState}
-        checked={formState.agree}
-      />
+      <fieldset>
+        <legend>Select your meals</legend>
+
+        <input
+          type="checkbox"
+          id="breakfast"
+          name="breakfast"
+          checked={formState.breakfast}
+          onChange={updateFormState}
+        />
+        <label htmlFor="breakfast">Breakfast</label>
+
+        <input
+          type="checkbox"
+          id="lunch"
+          name="lunch"
+          checked={formState.lunch}
+          onChange={updateFormState}
+        />
+        <label htmlFor="lunch">Lunch</label>
+
+        <input
+          type="checkbox"
+          id="dinner"
+          name="dinner"
+          checked={formState.dinner}
+          onChange={updateFormState}
+        />
+        <label htmlFor="dinner">Dinner</label>
+      </fieldset>
+
+      <label htmlFor="agree">
+        <input
+          type="checkbox"
+          id="agree"
+          name="agree"
+          onChange={updateFormState}
+          checked={formState.agree}
+        />
+        I agree TOC
+      </label>
 
       <button type="submit">Save</button>
       <button type="button" onClick={resetFormState}>
