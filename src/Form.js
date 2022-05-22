@@ -11,6 +11,7 @@ const Form = () => {
     breakfast: false,
     lunch: false,
     dinner: false,
+    shirtSize: "",
   };
   const [formState, setFormState] = useState(initialState);
 
@@ -100,6 +101,44 @@ const Form = () => {
           onChange={updateFormState}
         />
         <label htmlFor="dinner">Dinner</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Your T-shirt size</legend>
+
+        <label htmlFor="sizeS">
+          <input
+            type="radio"
+            id="sizeS"
+            name="shirtSize"
+            value="S"
+            checked={formState.shirtSize === "S"}
+            onChange={updateFormState}
+          />
+          Small
+        </label>
+        <label htmlFor="sizeM">
+          <input
+            type="radio"
+            id="sizeM"
+            name="shirtSize"
+            value="M"
+            checked={formState.shirtSize === "M"}
+            onChange={updateFormState}
+          />
+          Medium
+        </label>
+        <label htmlFor="sizeL">
+          <input
+            type="radio"
+            id="sizeL"
+            name="shirtSize"
+            value="L"
+            checked={formState.shirtSize === "L"}
+            onChange={updateFormState}
+          />
+          Large
+        </label>
       </fieldset>
 
       <label htmlFor="agree">
