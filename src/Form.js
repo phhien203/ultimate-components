@@ -5,6 +5,7 @@ const Form = () => {
   const initialState = {
     firstName: "",
     lastName: "",
+    biography: "",
   };
   const [formState, setFormState] = useState(initialState);
 
@@ -17,6 +18,7 @@ const Form = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    console.log(formState);
   };
 
   const resetFormState = () => {
@@ -40,6 +42,14 @@ const Form = () => {
         name="lastName"
         type="text"
         value={formState.lastName}
+        onChange={updateFormState}
+      />
+      <label htmlFor="biography">Biography</label>
+      <textarea
+        id="biography"
+        name="biography"
+        rows="10"
+        value={formState.biography}
         onChange={updateFormState}
       />
       <button type="submit">Save</button>
