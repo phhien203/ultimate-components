@@ -1,7 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Form.css";
 
-const Form = () => {
+const FormContainer = () => {
+  const initialState = {
+    firstName: "",
+    lastName: "",
+    biography: "",
+    transport: "",
+    agree: false,
+    breakfast: false,
+    lunch: false,
+    dinner: false,
+    shirtSize: "",
+  };
+
+  const loadedData = {
+    firstName: "Antonio",
+    lastName: "Pham",
+    biography: "GDE in Angular and WebDev",
+    transport: "planes",
+    agree: true,
+    breakfast: true,
+    lunch: false,
+    dinner: true,
+    shirtSize: "S",
+  };
+
+  const [formData, setFormData] = useState(initialState);
+
+  const loadDataToForm = () => {
+    setFormData(loadedData);
+  };
+
+  const onFormSubmit = (formValue) => {
+    console.log(formValue);
+  };
+
+  return (
+    <>
+      <Form formData={formData} onFormSubmit={onFormSubmit} />
+      <button type="button" onClick={loadDataToForm}>
+        Load data
+      </button>
+    </>
+  );
+};
+
+const Form = ({ formData, onFormSubmit }) => {
   const initialState = {
     firstName: "",
     lastName: "",
@@ -24,18 +69,23 @@ const Form = () => {
     });
   };
 
-  const onFormSubmit = (e) => {
+  const onFormSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(formState);
+    onFormSubmit(formState);
   };
 
   const resetFormState = () => {
     setFormState(initialState);
   };
 
+  useEffect(() => {
+    setFormState(formData);
+  }, [formData]);
+
   console.log("main render");
+
   return (
-    <form autoComplete="off" onSubmit={onFormSubmit}>
+    <form autoComplete="off" onSubmit={onFormSubmitHandler}>
       <label htmlFor="firstName">First name</label>
       <input
         id="firstName"
@@ -64,8 +114,13 @@ const Form = () => {
       />
 
       <label htmlFor="transport">Prefer transport</label>
-      <select name="transport" id="transport" onChange={updateFormState}>
-        <option>None selected</option>
+      <select
+        name="transport"
+        id="transport"
+        value={formState.transport}
+        onChange={updateFormState}
+      >
+        <option value="">None selected</option>
         <option value="trains">Trains</option>
         <option value="planes">Planes</option>
         <option value="boats">Boats</option>
@@ -146,8 +201,8 @@ const Form = () => {
           type="checkbox"
           id="agree"
           name="agree"
-          onChange={updateFormState}
           checked={formState.agree}
+          onChange={updateFormState}
         />
         I agree TOC
       </label>
@@ -160,4 +215,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormContainer;
