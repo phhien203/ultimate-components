@@ -6,6 +6,7 @@ const Form = () => {
     firstName: "",
     lastName: "",
     biography: "",
+    transport: "",
   };
   const [formState, setFormState] = useState(initialState);
 
@@ -36,6 +37,7 @@ const Form = () => {
         value={formState.firstName}
         onChange={updateFormState}
       />
+
       <label htmlFor="lastName">Last name</label>
       <input
         id="lastName"
@@ -44,6 +46,7 @@ const Form = () => {
         value={formState.lastName}
         onChange={updateFormState}
       />
+
       <label htmlFor="biography">Biography</label>
       <textarea
         id="biography"
@@ -52,6 +55,16 @@ const Form = () => {
         value={formState.biography}
         onChange={updateFormState}
       />
+
+      <label htmlFor="transport">Prefer transport</label>
+      <select name="transport" id="transport" onChange={updateFormState}>
+        <option>None selected</option>
+        <option value="trains">Trains</option>
+        <option value="planes">Planes</option>
+        <option value="boats">Boats</option>
+        <option value="cars">Cars</option>
+      </select>
+
       <button type="submit">Save</button>
       <button type="button" onClick={resetFormState}>
         Clear Form
